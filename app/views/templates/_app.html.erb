@@ -1,0 +1,20 @@
+<script type="text/x-template" id="app">
+  <div class="container">
+    <div class="app">
+      <br />
+      <center><h1>Contact App</h1></center>
+      <hr />
+      <add-contact v-on:add-contact="addContact"></add-contact>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <contact-list v-bind:contacts="contacts"></contact-list>
+      </table>
+    </div>
+  </div>
+</script>
