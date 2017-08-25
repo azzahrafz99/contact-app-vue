@@ -1,4 +1,4 @@
-var addContact = Vue.component('add-contact', {
+Vue.component('add-contact', {
   name: 'add-contact',
   template: '#add-contact',
   data () {
@@ -30,3 +30,4 @@ var addContact = Vue.component('add-contact', {
     }
   }
 })
+
