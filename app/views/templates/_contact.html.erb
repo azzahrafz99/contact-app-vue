@@ -3,7 +3,7 @@
     <td v-show="!isEditing">{{ contact.name }}</td>
     <td v-show="!isEditing">{{ contact.phoneNumber }}</td>
     <td v-show="!isEditing">
-      <button v-on:click="showForm">
+      <button v-on:click="editContact">
         Edit
       </button>
       <button v-on:click="deleteContact(contact)">
@@ -17,7 +17,8 @@
       <input type='text' v-model="contact.phoneNumber" placeholder="Phone Number" />
     </td>
     <td v-show="isEditing">
-      <button v-on:click="hideForm">Update</button>
+      <button v-on:click="updateContact(contact)">Update</button>
+      <button v-on:click="hideForm">Cancel</button>
     </td>
   </tr>
 </script>

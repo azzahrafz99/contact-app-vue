@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  respond_to :json, :html
+
   def index
     @users = User.all
     respond_to do |format|
@@ -7,9 +9,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    @users = User.new
-  end
+  def new;  end
 
   def create
     @user = User.new(user_params)
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       format.json do
-        if @user.update
+        if @user.update(user_params)
           render :json => @user
         end
       end
@@ -38,9 +38,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user = User.find(params[:id])
+    @user.destroy
     respond_to do |format|
-
+      format.json { render :json => @user }
     end
   end
 
@@ -50,3 +51,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :phone_number)
   end
 end
+

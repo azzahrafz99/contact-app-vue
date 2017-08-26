@@ -3,18 +3,17 @@ window.onload = function () {
     el: '#app-1',
     template: '#app',
     data: {
-      contacts: [{
-        name: 'Fatimah Az-Zahra',
-        phoneNumber: '088218598615'
-      },
-      {
-        name: 'Test',
-        phoneNumber: '088218598615'
-      }]
+      contacts: []
     },
     methods: {
-      addContact (newContact) {
-        this.contacts.push(newContact)
+      addContact(newContact) {
+        axios.post('/users.json', {
+          user: {name: newContact.name, phone_number: newContact.phoneNumber}
+        }).then((res) => {
+          this.contacts.push({id: res.data.id, name: res.data.name, phoneNumber: res.data.phone_number})
+        }).catch((error) => {
+          this.errors = error.response.data.errors
+        })
       }
     }
   })
