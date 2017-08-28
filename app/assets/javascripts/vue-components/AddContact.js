@@ -10,27 +10,24 @@ Vue.component('add-contact', {
   },
   methods: {
     openForm () {
-      this.isCreating = true
+      this.isCreating = true;
     },
     closeForm () {
-      this.isCreating = false
+      this.isCreating = false;
     },
-    sendForm () {
-      axios.get('users.json').then((response) => {
-        console.log(response)
-        if (this.nameText.length > 0 && this.phoneNumberText.length > 0) {
-          const name = this.nameText
-          const phoneNumber = this.phoneNumberText
-          this.$emit('add-contact', {
-            name,
-            phoneNumber
-          })
-          this.nameText = ''
-          this.phoneNumberText = ''
-          this.isCreating = false
-        }
-      })
-    }
-  }
-})
+    createContact () {
+      if (this.nameText.length > 0 && this.phoneNumberText.length > 0) {
+        const name = this.nameText;
+        const phoneNumber = this.phoneNumberText;
+        this.$emit('add-contact', {
+          name,
+          phoneNumber
+        });
+        this.nameText = '';
+        this.phoneNumberText = '';
+        this.isCreating = false;
+      }
+    },
+  },
+});
 

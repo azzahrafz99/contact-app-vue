@@ -8,21 +8,21 @@ Vue.component('contact', {
   },
   methods: {
     deleteContact (contact) {
-      this.$emit('delete-contact', contact)
+      this.$emit('delete-contact', contact);
     },
     updateContact (contact) {
       axios.patch( '/users/' + contact.id + '.json', {
-        user: { name: contact.name, phone_number: contact.phoneNumber }
+        user: { id: contact.id, name: contact.name, phone_number: contact.phoneNumber }
       }).then((res) => {
-        contact = ({id: res.data.id, name: res.data.name, phoneNumber: res.data.phone_number})
-        this.isEditing = false
-      })
+        contact = ({ id: res.data.id, name: res.data.name, phoneNumber: res.data.phone_number });
+        this.isEditing = false;
+      });
     },
     editContact () {
-      this.isEditing = true
+      this.isEditing = true;
     },
     hideForm () {
-      this.isEditing = false
-    }
-  }
-})
+      this.isEditing = false;
+    },
+  },
+});

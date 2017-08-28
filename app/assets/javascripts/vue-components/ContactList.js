@@ -5,9 +5,9 @@ Vue.component('contact-list', {
   methods: {
     deleteContact (contact) {
       axios.delete( '/users/' + contact.id + '.json').then((res) => {
-        this.contacts.splice(this.contacts.indexOf(contact), 1)
-        console.log(this.contacts)
-      })
-    }
-  }
-})
+        this.contacts.splice(this.contacts.indexOf(contact), 1);
+        console.log(this.contacts);
+      });
+    },
+  },
+});
