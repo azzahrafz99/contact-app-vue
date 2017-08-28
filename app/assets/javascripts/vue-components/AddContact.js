@@ -26,6 +26,10 @@ Vue.component('add-contact', {
         this.nameText = '';
         this.phoneNumberText = '';
         this.isCreating = false;
+      } else {
+        var div = document.getElementById('warning');
+        div.innerHTML += 'Missing Input';
+        div.style.display = "inline-block";
       }
     },
   },
