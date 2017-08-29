@@ -13,30 +13,29 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      format.json do
-        render json: @user if @user.save
-      end
-    end
+    return resource_saved(@user) if @user.save
+    resource_not_valid(@user)
   end
 
   def edit; end
 
   def update
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.json do
-        render json: @user if @user.update(user_params)
-      end
-    end
+    return resource_saved(@user) if @user.update(user_params)
+    resource_not_valid(@user)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    return resource_saved(@user) if @user.destroyed?
     respond_to do |format|
-      format.json { render json: @user }
+      format.json do
+        render json: { errors: ['Failed to destroy'] }, status: 400
+      end
     end
+  rescue ActiveRecord::RecordNotFound
+    resource_not_found
   end
 
   private

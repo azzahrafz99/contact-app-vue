@@ -3,7 +3,7 @@
     <td v-show="!isEditing">{{ contact.name }}</td>
     <td v-show="!isEditing">{{ contact.phone_number }}</td>
     <td v-show="!isEditing">
-      <button v-on:click="editContact">
+      <button v-on:click="editContact(contact)">
         Edit
       </button>
       <button v-on:click="deleteContact(contact)">
