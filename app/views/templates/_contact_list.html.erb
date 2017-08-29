@@ -1,6 +1,6 @@
 <script type="text/x-template" id="contact-list">
   <tbody>
     <contact v-on:delete-contact="deleteContact" v-for="contact in contacts"
-    :contact.sync="contact" :key="contact.name"></contact>
+    :contact.sync="contact" :key="contact.id"></contact>
   </tbody>
 </script>

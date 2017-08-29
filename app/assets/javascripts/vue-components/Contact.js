@@ -3,7 +3,8 @@ Vue.component('contact', {
   props: ['contact'],
   data: function () {
     return {
-      isEditing: false
+      isEditing: false,
+      restore: ''
     }
   },
   methods: {
@@ -29,7 +30,7 @@ Vue.component('contact', {
       this.isEditing = true;
     },
     hideForm (contact) {
-      this.isEditing = false;
+      console.log(beforeEditing);
     },
   },
 });
