@@ -5,34 +5,28 @@ class UsersController < ApplicationController
     @users = User.all
     respond_to do |format|
       format.html
-      format.json { render :json => @users }
+      format.json { render json: @users }
     end
   end
 
-  def new;  end
+  def new; end
 
   def create
     @user = User.new(user_params)
     respond_to do |format|
       format.json do
-        if @user.save
-          render :json => @user
-        end
+        render json: @user if @user.save
       end
     end
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     @user = User.find(params[:id])
     respond_to do |format|
       format.json do
-        if @user.update(user_params)
-          render :json => @user
-        end
+        render json: @user if @user.update(user_params)
       end
     end
   end
@@ -41,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
-      format.json { render :json => @user }
+      format.json { render json: @user }
     end
   end
 
@@ -51,4 +45,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :phone_number)
   end
 end
-

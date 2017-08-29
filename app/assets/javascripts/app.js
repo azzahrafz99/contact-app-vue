@@ -6,17 +6,18 @@ window.onload = function () {
       contacts: [],
     },
     methods: {
-      showContact () {
-        axios.get('/users.json').then((response) => {
-          this.contacts = response.data;
+      showContact (contact) {
+        axios.get('/users.json').then((res) => {
+          this.contacts = res.data;
         });
       },
       addContact(newContact) {
         axios.post('/users.json', {
-          user: { name: newContact.name, phone_number: newContact.phoneNumber }
+          user: {id: newContact.id, name: newContact.name,
+            phone_number: newContact.phoneNumber }
         }).then((res) => {
           this.contacts.push({ id: res.data.id, name: res.data.name,
-            phoneNumber: res.data.phone_number })
+            phone_number: res.data.phone_number })
         }).catch((error) => {
           this.errors = error.response.data.errors
         });

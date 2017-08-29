@@ -11,26 +11,24 @@ Vue.component('contact', {
       this.$emit('delete-contact', contact);
     },
     updateContact (contact) {
-      axios.patch( '/users/' + contact.id + '.json', {
-        user: { id: contact.id, name: contact.name, phone_number: contact.phoneNumber }
-      }).then((res) => {
-        console.log(contact);
-        contact = ({ id: res.data.id, name: res.data.name, phoneNumber: res.data.phone_number });
-        if (contact.phoneNumber.length > 0) {
+      if (contact.name.length > 0 && contact.phone_number.length > 0) {
+        axios.patch( '/users/' + contact.id + '.json', {
+          user: { name: contact.name, phone_number: contact.phone_number }
+        }).then((res) => {
+          contact = ({ name: res.data.name,
+            phone_number: res.data.phone_number });
           this.isEditing = false;
-          var div = document.getElementById('warning');
-          div.style.display = "none";
-        } else {
-          var div = document.getElementById('warning');
-          div.innerHTML += 'Missing Input';
-          div.style.display = "inline-block";
-        }
-      });
+        });
+      } else {
+        var div = document.getElementById('warning');
+        div.innerHTML += 'Missing Input';
+        div.style.display = "inline-block";
+      }
     },
     editContact () {
       this.isEditing = true;
     },
-    hideForm () {
+    hideForm (contact) {
       this.isEditing = false;
     },
   },

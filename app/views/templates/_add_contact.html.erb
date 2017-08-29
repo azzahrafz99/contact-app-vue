@@ -1,15 +1,18 @@
 <script type="text/x-template" id="add-contact">
   <div>
-    <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
+    <button class='ui basic button icon' v-on:click="openForm"
+    v-show="!isCreating">
       Add
     </button>
     <div v-show="isCreating">
       <div class="row">
         <div class='column column-30 column-offset-10'>
-          <input v-model="nameText" type='text' placeholder="Name" name="name" />
+          <input v-model="nameText" type='text' placeholder="Name"
+          name="name" />
         </div>
         <div class='column column-30'>
-          <input v-model="phoneNumberText" type='text' placeholder="Phone Number" name="phone_number" />
+          <input v-model="phoneNumberText" type='text'
+          placeholder="Phone Number" name="phone_number" />
         </div>
         <div class="column column-30">
           <button v-on:click="createContact()">
