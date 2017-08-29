@@ -17,13 +17,13 @@ window.onload = function () {
             phone_number: newContact.phoneNumber }
         }).then((res) => {
           this.contacts.push({ id: res.data.id, name: res.data.name,
-            phone_number: res.data.phone_number })
+            phone_number: res.data.phone_number });
         }).catch((error) => {
-          this.errors = error.response.data.errors
+          this.errors = error.response.data.errors;
         });
       },
     },
   });
   app.showContact();
-}
+};
 
